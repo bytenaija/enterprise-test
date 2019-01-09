@@ -36,8 +36,8 @@ echo "# Apply executable permissions to the docker compose binary" && \
 
 sudo chmod +x /usr/local/bin/docker-compose && \
 
-docker-compose --version && \
+sudo docker-compose --version && \
 
-docker-compose up
+sudo docker-compose up
 
 
