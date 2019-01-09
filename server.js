@@ -11,7 +11,7 @@ app.use(cors());
 app.use(morgan('dev'));
 
 app.get("/", (req, res)=>{
-    res.send('We are running')
+    res.json({success: true, message: 'I am very happy'})
 })
 let PORT = process.env.PORT || 8080;
 
