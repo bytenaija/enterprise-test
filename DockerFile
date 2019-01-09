@@ -22,10 +22,11 @@ COPY ecosystem.config.js .
 ENV NPM_CONFIG_LOGLEVEL warn
 RUN npm install --production
 
+COPY data/database.js /docker-entrypoint-initdb.d/
+
 # Expose the listening port of your app
 EXPOSE 8080
 
-EXPOSE 9615
 
 # Show current folder structure in logs
 RUN ls -al -R
