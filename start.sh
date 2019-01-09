@@ -21,4 +21,4 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-
 echo "# Apply executable permissions to the docker compose binary" && \
 sudo chmod +x /usr/local/bin/docker-compose && \
 sudo docker-compose --version && \
-sudo docker-compose --verbose up
+sudo docker-compose up --build
