@@ -25,6 +25,8 @@ RUN npm install --production
 # Expose the listening port of your app
 EXPOSE 8080
 
+EXPOSE 9615
+
 # Show current folder structure in logs
 RUN ls -al -R
 
