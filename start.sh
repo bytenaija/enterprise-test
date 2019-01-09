@@ -38,6 +38,6 @@ sudo chmod +x /usr/local/bin/docker-compose && \
 
 sudo docker-compose --version && \
 
-sudo docker-compose up
+sudo docker-compose --verbose up
 
 
