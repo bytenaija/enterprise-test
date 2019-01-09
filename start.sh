@@ -3,39 +3,40 @@
 
 echo "# Downloading the docker install script"
 
-sudo apt-get remove docker docker-engine docker.io
+sudo apt-get remove docker docker-engine docker.io && \
 
-sudo  apt update
+sudo apt update && sudo apt full-upgrade && \
 
 sudo apt-get install \
     apt-transport-https \
     ca-certificates \
     curl \
-    software-properties-common
+    software-properties-common && \
 
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add 
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add && \
 
-sudo apt-key fingerprint 0EBFCD88
+sudo apt-key fingerprint 0EBFCD88 && \
 
 sudo add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    $(lsb_release -cs) \
-   stable"
+   stable" && \
 
-sudo apt-get update
+sudo apt-get update && \
 
-sudo apt-get install docker-ce
+sudo apt-get install docker-ce && \
 
-sudo docker run hello-world
+sudo docker run hello-world && \
 
 
-echo "# Downloading the docker-compose"
-sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+echo "# Downloading the docker-compose" && \
+sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
 
-echo "# Apply executable permissions to the docker compose binary"
-sudo chmod +x /usr/local/bin/docker-compose
+echo "# Apply executable permissions to the docker compose binary" && \
 
-docker-compose --version
+sudo chmod +x /usr/local/bin/docker-compose && \
+
+docker-compose --version && \
 
 docker-compose run app
 
