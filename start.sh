@@ -3,19 +3,19 @@
 
 echo "# Downloading the docker install script"
 
-sudo apt -y remove docker docker-engine docker.io && \
+sudo apt -y remove docker docker-engine docker.io | bash && \
 
-sudo apt -y update && \
+sudo apt -y update  | bash && \
 
 sudo apt -y install \
     apt-transport-https \
     ca-certificates \
     curl \
-    software-properties-common && \
+    software-properties-common  | bash  && \
 
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add && \
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add   | bash  && \
 
-sudo apt-key fingerprint 0EBFCD88 && \
+sudo apt-key fingerprint 0EBFCD88   | bash  && \
 
 sudo add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
@@ -38,6 +38,6 @@ sudo chmod +x /usr/local/bin/docker-compose && \
 
 sudo docker-compose --version && \
 
-sudo docker-compose --verbose up
+sudo docker-compose --verbose up   | bash 
 
 
