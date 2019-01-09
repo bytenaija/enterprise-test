@@ -5,7 +5,7 @@ echo "# Downloading the docker install script"
 
 sudo apt-get remove docker docker-engine docker.io
 
-sudo apt-get update
+sudo -i apt-get update
 
 sudo apt-get install \
     apt-transport-https \
