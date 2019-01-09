@@ -3,11 +3,11 @@
 
 echo "# Downloading the docker install script"
 
-sudo apt-get remove docker docker-engine docker.io && \
+sudo apt -y remove docker docker-engine docker.io && \
 
-sudo apt update && sudo apt full-upgrade && \
+sudo apt -y update && \
 
-sudo apt-get install \
+sudo apt -y install \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -22,9 +22,9 @@ sudo add-apt-repository \
    $(lsb_release -cs) \
    stable" && \
 
-sudo apt-get update && \
+sudo apt -y update && \
 
-sudo apt-get install docker-ce && \
+sudo apt -y install docker-ce && \
 
 sudo docker run hello-world && \
 
@@ -38,6 +38,6 @@ sudo chmod +x /usr/local/bin/docker-compose && \
 
 docker-compose --version && \
 
-docker-compose run app
+docker-compose up -d
 
 
