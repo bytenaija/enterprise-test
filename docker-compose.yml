@@ -1,9 +1,7 @@
 version: "2"
 services:
   web:
-    build:
-      context: .
-      dockerfile: ./DockerFile
+    build: .
     ports:
     - "8080:8080"
     depends_on:
