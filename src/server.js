@@ -1,7 +1,8 @@
 let express = require('express');
 let cors = require('cors');
 let morgan = require('morgan');
-
+let mongoose = require('mongoose');
+let db = require('./database')
 
 let app = express();
 
@@ -14,8 +15,13 @@ let orderRoutes = require('./routes/Orders.route')
 app.use(cors());
 app.use(morgan('dev'));
 
-app.get("/", (req, res)=>{
-    res.json({success: true, message: 'I am very happy'})
+
+mongoose.connect(db.MONGO_URL, (err)=>{
+    if(err){
+       throw err
+    }else{
+        console.log("Connected to MongoDB")
+    }
 })
 
 app.use(orderRoutes);

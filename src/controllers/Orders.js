@@ -32,14 +32,22 @@ module.exports = {
                 let distance = directions.routes[0].distance;
                 distance = parseFloat(Math.round(distance / 1000 * 100) / 100).toFixed(2);
                 console.log(distance)
-
-                res.status(200).json({distance});
-
-                Orders.create({
-                        distance
-                    })
+                let newOrder = {
+                    distance,
+                    // origin: {
+                    //     lat: START_LATITUDE,
+                    //     lon: START_LONGITUDE
+                    // },
+                    // destination:{
+                    //     lat: END_LATITUDE,
+                    //     lon: END_LONGITUDE
+                    // }
+                }
+              
+                console.log(newOrder)
+                Orders.create(newOrder)
                     .then(order => {
-                        res.status(200).json(order)
+                        res.status(200).json({id: order._id, distance: order.distance, status: order.status})
                     }).catch(err => {
                         res.status(500).json({
                             error: 'We could not create your order. Please try again.'
@@ -57,15 +65,27 @@ module.exports = {
             }else{
                 order.status = req.body.status;
                order.save().then(order => {
-                res.status(200).json({})
-               })
-
-                
+                res.status(200).json({status: 'SUCCESS' })
+               }).catch(err =>{
+                   res.status(500).json({error: 'An error occured that prevent you taking this order. Please try again.'})
+               }) 
             }
+        }).catch(err =>{
+            res.status(500).json({error: 'An error occured that prevent you taking this order. Please try again.'})
         })
     },
 
     getOrders: (req, res) => {
-
+        let {page, limit} = req.query;
+        page = page? parseInt(page): 0;
+        limit = limit? parseInt(limit): 20;
+        Orders.find({}).limit(limit).skip(page).then(orders =>{
+            let parsedOrders = []
+            orders.forEach(order =>{
+                parsedOrders.push({id: order._id, distance: order.distance, status: order.status});
+            })
+            res.status(200).json({orders: parsedOrders})
+        })
+        
     }
 }
