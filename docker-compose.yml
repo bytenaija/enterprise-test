@@ -14,3 +14,7 @@ services:
       MONGO_INITDB_DATABASE: lmdb
     ports:
     - "27017:27017"
+    volumes:
+      # if you wish to setup additional user accounts specific per DB or with different roles you can use following entry point
+    - "$PWD/mongo-entrypoint/:/docker-entrypoint-initdb.d/"
+    command: mongod
