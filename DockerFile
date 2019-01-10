@@ -17,12 +17,13 @@ FROM keymetrics/pm2:latest-alpine
 COPY src src/
 COPY package.json .
 COPY ecosystem.config.js .
+COPY .env .
 
 # Install app dependencies
 ENV NPM_CONFIG_LOGLEVEL warn
 RUN npm install --production
 
-COPY data/database.js /docker-entrypoint-initdb.d/
+
 
 # Expose the listening port of your app
 EXPOSE 8080
