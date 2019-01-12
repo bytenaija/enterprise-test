@@ -18,7 +18,7 @@ app.use(morgan('dev'));
 
 mongoose.connect(db.MONGO_URL, (err)=>{
    
-    console.log("Environment", process.env.NODE_ENV)
+ 
     if(err){
        throw err
     }else{

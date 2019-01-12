@@ -18,6 +18,7 @@ let app = require('../src/server'),
 
 
   describe('Orders Integration API', function() {
+    this.timeout(0);
   before(() =>{
     return new Promise((resolve, reject) =>{
       mongoose.connection.collections['orders'].drop( function(err) {
@@ -26,13 +27,13 @@ let app = require('../src/server'),
     });
     })
   })
-      this.timeout(0);
+      
         it('should return an empty order since no order exist in the database yet', function(done) { 
-          console.log("testing")
+          
           request(app)
           .get('/orders')
           .end(function(err, response){
-            console.log(response.text)
+          
             expect(response.statusCode).to.equal(200);
             expect(JSON.parse(response.text).orders).to.be.an('array').that.is.empty;
               done(); 
@@ -54,7 +55,7 @@ let app = require('../src/server'),
               expect(order.distance).to.exist
               expect(order.status).to.exist.equal('UNASSIGNED')
               expect(order.status).to.equal('UNASSIGNED')
-              expect(parseFloat(order.distance)).to.equal(372.68)
+              expect(parseFloat(order.distance)).to.equal(372684.9)
                 done(); 
               }); 
           });
@@ -66,7 +67,7 @@ let app = require('../src/server'),
               .patch(`/orders/${id}`)
               .send(takeOrder)
               .end(function(err, response){
-                // console.log(response.text)
+              
                 expect(response.statusCode).to.equal(200);
                 expect(JSON.parse(response.text).status).to.equal('SUCCESS');
                   done(); 
@@ -79,7 +80,7 @@ let app = require('../src/server'),
                 .patch(`/orders/${id}`)
                 .send(takeOrder)
                 .end(function(err, response){
-                  // console.log(response.text)
+                
                   expect(response.statusCode).to.equal(500);
                   expect(JSON.parse(response.text).error).to.exist;
                   
@@ -94,7 +95,7 @@ let app = require('../src/server'),
                 .post(`/orders`)
                 .send({origin: [1.23838883, 9.3377373]})
                 .end(function(err, response){
-                  console.log(response.text)
+                 
                   expect(response.statusCode).to.equal(500);
                   expect(JSON.parse(response.text).error).to.exist;
                   
@@ -102,8 +103,55 @@ let app = require('../src/server'),
                   
                   }); 
               });
-   
+              
+              it('It should return paginated orders', function(done) { 
+                request(app)
+                .post(`/orders`)
+                .send(newOrder)
+                .end(function(err, response){
+                  request(app)
+                  .get(`/orders?page=0&limit=1`)
+                  .send(newOrder)
+                  .end(function(err, response){
+                    expect(response.statusCode).to.equal(200);
+                    expect(JSON.parse(response.text).orders).to.be.an('array')
+                    expect(JSON.parse(response.text).orders).to.have.lengthOf(1)
+                      done(); 
+                  })
+                  
+                  }); 
+              });
 
+              it('It should return the right number of orders when page is applied to pagination', function(done) { 
+                request(app)
+                .post(`/orders`)
+                .send(newOrder)
+                .end(function(err, response){
+                  request(app)
+                  .get(`/orders?page=1&limit=2`)
+                  .send(newOrder)
+                  .end(function(err, response){
+                    expect(response.statusCode).to.equal(200);
+                    expect(JSON.parse(response.text).orders).to.be.an('array')
+                    expect(JSON.parse(response.text).orders).to.have.lengthOf(2)
+                      done(); 
+                  })
+                  
+                  }); 
+              });
+              
+              it('It should return error when the wrong order number is taken', function(done) { 
+                request(app)
+                .patch(`/orders/484949494844847559`)
+                .send(takeOrder)
+                .end(function(err, response){
+                
+                  expect(response.statusCode).to.equal(500);
+                  expect(JSON.parse(response.text).error).to.exist
+                    done(); 
+                  }); 
+              });
+             
               });
 
             

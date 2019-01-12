@@ -32,8 +32,8 @@ module.exports = {
             .then(response => {
                 const directions = response.body;
                 let distance = directions.routes[0].distance;
-                distance = parseFloat(Math.round(distance / 1000 * 100) / 100).toFixed(2);
-                console.log(distance)
+                distance = parseFloat(Math.abs(Math.round(distance * 100) / 100)).toFixed(2);
+              
                 let newOrder = {
                     distance,
                     // origin: {
@@ -46,7 +46,7 @@ module.exports = {
                     // }
                 }
               
-                console.log(newOrder)
+               
                 Orders.create(newOrder)
                     .then(order => {
                         res.status(200).json({id: order._id, distance: order.distance, status: order.status})
