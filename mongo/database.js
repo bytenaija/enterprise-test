@@ -7,7 +7,7 @@ db.createUser({
   pwd: 'password',
   roles: [
     {
-      role: 'root',
+      role: 'dbOwner',
       db: 'lmdb_test',
     },
   ],
@@ -21,7 +21,7 @@ db.createUser({
   pwd: 'password',
   roles: [
     {
-      role: 'root',
+      role: 'dbOwner',
       db: 'lmdb',
     },
   ],
