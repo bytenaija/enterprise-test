@@ -22,7 +22,7 @@ COPY .env .
 ENV NODE_ENV production
 # Install app dependencies
 ENV NPM_CONFIG_LOGLEVEL warn
-RUN npm install 
+RUN npm install --production
 
 
 # Expose the listening port of your app
