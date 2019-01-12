@@ -17,10 +17,12 @@ app.use(morgan('dev'));
 
 
 mongoose.connect(db.MONGO_URL, (err)=>{
+    console.log(process.env.MONGO_URL)
     if(err){
        throw err
     }else{
         console.log("Connected to MongoDB @", db.MONGO_URL)
+        
     }
 })
 
