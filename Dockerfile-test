@@ -16,8 +16,6 @@ RUN npm install chai supertest superagent
 
 RUN npm install -g mocha
 
-# Show current folder structure in logs
-RUN ls -al -R
 
 # Expose the listening port of your app
 EXPOSE 3000
