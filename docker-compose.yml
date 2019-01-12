@@ -8,7 +8,7 @@ services:
     depends_on:
     - mongo
     environment:
-      MONGODB_URL: mongodb://user:password@mongod:21017/lmdb
+      MONGO_URL: mongodb://user:password@mongod:21017/lmdb
  
   mongo:
     image: aashreys/mongo-auth:latest
