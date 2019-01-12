@@ -12,7 +12,7 @@ ENV NODE_ENV production
 ENV NPM_CONFIG_LOGLEVEL warn
 RUN npm install
 
-RUN chai supertest superagent
+RUN npm install chai supertest superagent --save-dev
 
 RUN npm install -g mocha
 
