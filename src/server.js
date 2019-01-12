@@ -20,7 +20,7 @@ mongoose.connect(db.MONGO_URL, (err)=>{
     if(err){
        throw err
     }else{
-        console.log("Connected to MongoDB")
+        console.log("Connected to MongoDB @", db.MONGO_URL)
     }
 })
 
