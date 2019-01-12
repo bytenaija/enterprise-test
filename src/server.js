@@ -17,12 +17,13 @@ app.use(morgan('dev'));
 
 
 mongoose.connect(db.MONGO_URL, (err)=>{
-    console.log("Processss", process.env.MONGO_URL)
-    console.log(process.env.NODE_ENV)
+   
+    console.log("Environment", process.env.NODE_ENV)
     if(err){
        throw err
     }else{
-        console.log("Connected to MongoDB @", db.MONGO_URL)
+       
+        console.log("Connected to MongoDB")
         
     }
 })
@@ -33,3 +34,4 @@ let PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => console.log(`server runNing on PORT ${PORT}`));
 
+module.exports = app;

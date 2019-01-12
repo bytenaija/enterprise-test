@@ -1,7 +1,10 @@
- test:
-    container_name: laramove_test
-    build: ./tests
-    ports:
-    - "8080:8080"
-    depends_on:
-    - laramove_web  
+FROM laramove_web
+
+# # Create app directory
+WORKDIR /usr/src/app
+# # Install app dependencies
+COPY test/ .
+RUN npm Install -g mocha
+RUN npm install supertest chai superagent
+
+ CMD [ "mocha", "--exit" ]

@@ -7,12 +7,14 @@ let Orders = require('../models/Orders')
 
 module.exports = {
     createOrder: (req, res) => {
+        try{
+
+        
         let START_LATITUDE = req.body.origin[0],
             START_LONGITUDE = req.body.origin[1];
         let END_LATITUDE = req.body.destination[0],
             END_LONGITUDE = req.body.destination[1]
 
-        console.log(START_LATITUDE, START_LONGITUDE, END_LATITUDE, END_LONGITUDE, process.env.MAPBOX_ACCESS_TOKEN);
 
         directionsClient
             .getDirections({
@@ -54,6 +56,9 @@ module.exports = {
                         })
                     })
             }).catch(err => res.status(500).json({ error: "An error occured with our distance API. Please try again later"}))
+        }catch(err){
+            res.status(500).json({ error: "An error occured . Please try again later"})
+        }
 
     },
 
