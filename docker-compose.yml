@@ -1,4 +1,4 @@
-version: "2"
+version: "3.6"
 services:
   web:
     container_name: enterprise_web
@@ -12,11 +12,13 @@ services:
       - NODE_ENV=production
   test:
     container_name: enterprise_test
-    build: ./tests
+    build: 
+      context: .
+      dockerfile: tests/Dockerfile 
     ports:
     - "3000:3000"
     depends_on:
-    - web  
+    - mongo  
     environment:
       - MONGO_URL=mongodb://user:password@mongo:27017/lmdb_test
       - NODE_ENV=test
