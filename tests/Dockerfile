@@ -1,4 +1,4 @@
-FROM laramove_web
+FROM enterprise_web
 
 # # Create app directory
 WORKDIR /usr/src/app

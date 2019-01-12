@@ -22,4 +22,4 @@ echo "# Apply executable permissions to the docker compose binary" && \
 export NODE_ENV=production && \
 sudo chmod +x /usr/local/bin/docker-compose && \
 sudo docker-compose --version && \
-sudo docker-compose up --build -d && sudo docker attach laramove_web
+sudo docker-compose up --build -d && sudo docker attach enterprise_web
