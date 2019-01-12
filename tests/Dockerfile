@@ -7,7 +7,7 @@ COPY test test/
 COPY package.json .
 COPY .env .
 
-ENV NODE_ENV production
+ENV NODE_ENV test
 # Install app dependencies
 ENV NPM_CONFIG_LOGLEVEL warn
 RUN npm install
