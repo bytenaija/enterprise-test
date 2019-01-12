@@ -8,8 +8,8 @@ services:
     depends_on:
     - mongo
     environment:
-      MONGO_URL: mongodb://user:password@mongod:21017/lmdb
-      NODE_ENV: production
+      - MONGO_URL=mongodb://user:password@mongod:21017/lmdb
+      - NODE_ENV=production
  
   mongo:
     image: aashreys/mongo-auth:latest
