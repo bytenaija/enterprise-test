@@ -6,22 +6,24 @@ services:
     ports:
     - "8080:8080"
     depends_on:
-    - mongo
+      - mongo
     environment:
       - MONGO_URL=mongodb://user:password@mongo:27017/lmdb
       - NODE_ENV=production
+
   test:
     container_name: enterprise_test
     build: 
       context: .
       dockerfile: tests/Dockerfile 
     ports:
-    - "3000:3000"
+      - "3000:3000"
     depends_on:
-    - mongo  
+      - mongo  
     environment:
       - MONGO_URL=mongodb://user:password@mongo:27017/lmdb_test
-      - NODE_ENV=test
+      - NODE_ENV=development
+
   mongo:
     build: ./mongo
     container_name: enterprise_mongo
