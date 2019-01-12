@@ -5,12 +5,14 @@ This application was built with node.js and MongoDb. It is deploy in a Docker co
 It makes use of MapBox Matrix API and as such you will need a MapBox access token.
 
 ##Running the Application
-1. Sign up at http://mapbox.com and get a public access token
-2. Rename the .env.example file to .env and add the access token from MapBox to the right hand side of the first line where MAPBOX_ACCESS_TOKEN = is located: e.g. `MAPBOX_ACCESS_TOKEN = acess_token`
-3. Open your terminal and run `bash start.sh`
-4. This will build three containers: enterprise_test, enterprise_mongo and enterprise_web
-5. The integration/unit tests included will automatically and the results will be displayed in the terminal
-6. You can access the application from the following at http://localhost:8080 from the url below
+1. Clone this repository
+2. cd into the folder where you cloned the repository
+3. Sign up at http://mapbox.com and get a public access token
+4. Rename the .env.example file to .env and add the access token from MapBox to the right hand side of the first line where MAPBOX_ACCESS_TOKEN = is located: e.g. `MAPBOX_ACCESS_TOKEN = acess_token`
+5. Open your terminal and run `bash start.sh`
+6. This will build three containers: enterprise_test, enterprise_mongo and enterprise_web
+7. The integration/unit tests included will automatically and the results will be displayed in the terminal
+8. You can access the application from the following at http://localhost:8080 from the url below
 
 ## Api interface example
 

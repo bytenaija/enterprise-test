@@ -15,7 +15,7 @@ services:
     container_name: enterprise_test
     build: 
       context: .
-      dockerfile: tests/Dockerfile 
+      dockerfile: Dockerfile-test 
     ports:
       - "3000:3000"
     depends_on:
