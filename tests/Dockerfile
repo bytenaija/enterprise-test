@@ -12,6 +12,7 @@ ENV NODE_ENV production
 ENV NPM_CONFIG_LOGLEVEL warn
 RUN npm install
 
+RUN npm install -g mocha
 
 # Show current folder structure in logs
 RUN ls -al -R
