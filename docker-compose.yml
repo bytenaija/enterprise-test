@@ -14,7 +14,7 @@ services:
     container_name: enterprise_test
     build: ./tests
     ports:
-    - "8080:8080"
+    - "3000:3000"
     depends_on:
     - web  
     environment:
