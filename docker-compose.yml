@@ -7,6 +7,15 @@ services:
     - "8080:8080"
     depends_on:
     - mongo
+    environment:
+      MONGODB_URL: mongodb://user:password@mongod:21017/lmdb
+  test:
+    container_name: laramove_test
+    build: ./tests
+    ports:
+    - "8080:8080"
+    depends_on:
+    - laramove_web  
   mongo:
     image: aashreys/mongo-auth:latest
     environment:

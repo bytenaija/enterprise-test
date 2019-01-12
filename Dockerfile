@@ -19,10 +19,10 @@ COPY package.json .
 COPY ecosystem.config.js .
 COPY .env .
 
+ENV NODE_ENV production
 # Install app dependencies
 ENV NPM_CONFIG_LOGLEVEL warn
 RUN npm install 
-
 
 
 # Expose the listening port of your app
