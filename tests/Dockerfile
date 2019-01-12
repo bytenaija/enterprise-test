@@ -12,6 +12,8 @@ ENV NODE_ENV production
 ENV NPM_CONFIG_LOGLEVEL warn
 RUN npm install
 
+RUN chai supertest superagent
+
 RUN npm install -g mocha
 
 # Show current folder structure in logs
