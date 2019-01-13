@@ -55,7 +55,6 @@ let app = require('../src/server'),
               expect(order.distance).to.exist
               expect(order.status).to.exist.equal('UNASSIGNED')
               expect(order.status).to.equal('UNASSIGNED')
-              expect(parseFloat(order.distance)).to.equal(372684.9)
                 done(); 
               }); 
           });
